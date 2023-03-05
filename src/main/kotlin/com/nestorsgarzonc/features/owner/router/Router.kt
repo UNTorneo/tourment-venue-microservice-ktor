@@ -1,5 +1,5 @@
 package com.nestorsgarzonc.features.owner.router
-import com.nestorsgarzonc.features.owner.models.Owner
+import com.nestorsgarzonc.features.owner.model.Owner
 import io.ktor.http.*
 import io.ktor.server.routing.*
 import io.ktor.server.application.*
