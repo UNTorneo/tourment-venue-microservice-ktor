@@ -4,20 +4,25 @@ import com.nestorsgarzonc.features.owner.model.Owners
 import com.nestorsgarzonc.features.photos.model.Photos
 import com.nestorsgarzonc.features.schedule.model.Schedules
 import com.nestorsgarzonc.features.venue.model.Venues
+import io.ktor.server.config.*
 import kotlinx.coroutines.*
 import org.jetbrains.exposed.sql.*
 import org.jetbrains.exposed.sql.transactions.*
 import org.jetbrains.exposed.sql.transactions.experimental.*
 
 object DatabaseFactory {
-    fun init() {
+    fun init(config: ApplicationConfig) {
         val driverClassName = "com.impossibl.postgres.jdbc.PGDriver"
-        val jdbcURL = "jdbc:pgsql://localhost:5432/tourment_venue"
+        val url = config.propertyOrNull("deployment.db.url")?.getString() ?: "localhost"
+        val port = config.propertyOrNull("deployment.db.port")?.getString() ?: "5432"
+        val db = config.propertyOrNull("deployment.db.dbName")?.getString() ?: "tourment_venue"
+        val jdbcURL = "jdbc:pgsql://$url:$port/$db"
         val database = Database.connect(
             jdbcURL,
             driverClassName,
-            "segc_db",
-            "123"
+            config.propertyOrNull("deployment.db.username")?.getString() ?: "segc_db",
+            config.propertyOrNull("deployment.db.password")?.getString() ?: "123"
+
         )
         transaction(database) {
             SchemaUtils.create(Courts)
