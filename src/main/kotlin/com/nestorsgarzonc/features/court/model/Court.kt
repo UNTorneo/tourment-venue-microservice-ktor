@@ -1,6 +1,5 @@
 package com.nestorsgarzonc.features.court.model
 
-import com.nestorsgarzonc.features.schedule.model.Schedules
 import com.nestorsgarzonc.features.venue.model.Venues
 import kotlinx.serialization.Serializable
 import org.jetbrains.exposed.dao.id.IntIdTable
@@ -20,6 +19,7 @@ data class AddCourt(
     val sportId: String,
     val isActive: Boolean,
 )
+
 @Serializable
 data class UpdateCourt(
     val venueId: Int? = null,
@@ -34,8 +34,8 @@ fun resultRowToCourt(row: ResultRow) = Court(
     id = row[Courts.id].value,
 )
 
-object Courts: IntIdTable() {
+object Courts : IntIdTable() {
     val venueId = reference("venueId", Venues)
     val sportId = varchar("sportId", 255)
-    val isActive= bool("isActive").default(true)
+    val isActive = bool("isActive").default(true)
 }
