@@ -48,7 +48,6 @@ dependencies {
     implementation("org.jetbrains.exposed:exposed-dao:$exposed_version")
     implementation("org.jetbrains.exposed:exposed-jdbc:$exposed_version")
     implementation("org.jetbrains.exposed:exposed-java-time:$exposed_version")
-    implementation("com.h2database:h2:$h2_version")
     //KOIN DEPENDENCIES
     implementation ("io.insert-koin:koin-ktor:$koin_ktor")
     // SLF4J Logger

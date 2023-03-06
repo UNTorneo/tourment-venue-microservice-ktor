@@ -5,7 +5,7 @@ import com.nestorsgarzonc.core.plugins.DatabaseFactory.dbQuery
 import com.nestorsgarzonc.features.schedule.model.*
 import org.jetbrains.exposed.sql.*
 import org.jetbrains.exposed.sql.SqlExpressionBuilder.eq
-import java.time.LocalDate
+import java.time.LocalTime
 
 class ScheduleController {
     suspend fun getAllSchedules(): List<Schedule> = dbQuery {
@@ -19,11 +19,10 @@ class ScheduleController {
             .singleOrNull()
     }
 
-    suspend fun getSchedulesByCourtId(id: Int): Schedule? = dbQuery {
+    suspend fun getSchedulesByCourtId(id: Int): List<Schedule>? = dbQuery {
         Schedules
             .select { Schedules.courtId eq id }
             .map(::resultRowToSchedule)
-            .singleOrNull()
     }
 
     suspend fun createSchedule(schedule: AddSchedule): Failure? = dbQuery {
@@ -31,8 +30,8 @@ class ScheduleController {
             it[courtId] = schedule.courtId
             it[price] = schedule.price
             it[weekDay] = schedule.weekDay
-            it[openHour] = LocalDate.parse(schedule.openHour)
-            it[closeHour] = LocalDate.parse(schedule.closeHour)
+            it[openHour] = LocalTime.parse(schedule.openHour)
+            it[closeHour] = LocalTime.parse(schedule.closeHour)
         }
         insertStatement.resultedValues?.singleOrNull()?.let(::resultRowToSchedule)
             ?: return@dbQuery Failure("No se pudo crear la cancha")
@@ -44,8 +43,8 @@ class ScheduleController {
             if (schedule.courtId != null) it[courtId] = schedule.courtId
             if (schedule.price != null) it[price] = schedule.price
             if (schedule.weekDay != null) it[weekDay] = schedule.weekDay
-            if (schedule.openHour != null) it[openHour] = LocalDate.parse(schedule.openHour)
-            if (schedule.closeHour != null) it[closeHour] = LocalDate.parse(schedule.closeHour)
+            if (schedule.openHour != null) it[openHour] = LocalTime.parse(schedule.openHour)
+            if (schedule.closeHour != null) it[closeHour] = LocalTime.parse(schedule.closeHour)
         }
         if (insertStatement > 0) {
             return@dbQuery null

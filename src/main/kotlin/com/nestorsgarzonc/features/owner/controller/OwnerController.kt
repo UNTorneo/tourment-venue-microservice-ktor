@@ -3,7 +3,6 @@ package com.nestorsgarzonc.features.owner.controller
 import com.nestorsgarzonc.core.failure.Failure
 import com.nestorsgarzonc.features.owner.model.*
 import com.nestorsgarzonc.core.plugins.DatabaseFactory.dbQuery
-import com.nestorsgarzonc.features.venue.model.Venues
 import org.jetbrains.exposed.sql.*
 import org.jetbrains.exposed.sql.SqlExpressionBuilder.eq
 

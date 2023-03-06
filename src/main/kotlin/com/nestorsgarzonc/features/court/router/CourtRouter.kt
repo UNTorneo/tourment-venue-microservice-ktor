@@ -11,7 +11,7 @@ import org.koin.ktor.ext.inject
 fun Routing.courtRouter() {
     route("/court") {
         val controller by inject<CourtController>()
-        get() {
+        get {
             val courtId = call.request.queryParameters["id"]?.toIntOrNull()
             if (courtId != null) {
                 val court = controller.getCourtById(courtId) ?: return@get call.respond(
@@ -64,7 +64,7 @@ fun Routing.courtRouter() {
                 mapOf("error" to "Falta el id de la cancha")
             )
         }
-        delete() {
+        delete {
             val courtId = call.request.queryParameters["id"]?.toIntOrNull()
             if (courtId != null) {
                 val failure = controller.deleteCourtById(courtId) ?: return@delete call.respond(

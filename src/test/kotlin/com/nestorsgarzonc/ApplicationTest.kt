@@ -6,7 +6,6 @@ import io.ktor.client.statement.*
 import io.ktor.server.testing.*
 import kotlin.test.*
 import io.ktor.http.*
-import com.nestorsgarzonc.plugins.*
 
 class ApplicationTest {
     @Test

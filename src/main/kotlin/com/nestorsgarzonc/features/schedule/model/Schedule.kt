@@ -4,7 +4,7 @@ import com.nestorsgarzonc.features.court.model.Courts
 import kotlinx.serialization.Serializable
 import org.jetbrains.exposed.dao.id.IntIdTable
 import org.jetbrains.exposed.sql.ResultRow
-import org.jetbrains.exposed.sql.javatime.date
+import org.jetbrains.exposed.sql.javatime.time
 
 @Serializable
 data class Schedule(
@@ -45,8 +45,8 @@ fun resultRowToSchedule(row: ResultRow) = Schedule(
 )
 
 object Schedules : IntIdTable() {
-    val openHour = date("openHour")
-    val closeHour = date("closeHour")
+    val openHour = time("openHour")
+    val closeHour = time("closeHour")
     val weekDay = uinteger("weekDay")
     val courtId = reference("courtId", Courts)
     val price = ulong("price")

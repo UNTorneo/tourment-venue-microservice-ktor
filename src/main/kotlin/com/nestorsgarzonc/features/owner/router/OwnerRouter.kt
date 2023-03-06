@@ -13,7 +13,7 @@ fun Routing.ownerRouter() {
     route("/owner") {
         val ownerController by inject<com.nestorsgarzonc.features.owner.controller.OwnerController>()
         //Get owners
-        get() {
+        get {
             val ownerId = call.request.queryParameters["id"]?.toIntOrNull()
             if (ownerId != null) {
                 val owner = ownerController.getOwnerById(ownerId) ?: return@get call.respond(
@@ -34,7 +34,7 @@ fun Routing.ownerRouter() {
             call.respond(owners)
         }
         //Delete an owner
-        delete() {
+        delete {
             val ownerId = call.request.queryParameters["id"]?.toIntOrNull()
             if (ownerId != null) {
                 val failure = ownerController.deleteOwnerById(ownerId) ?: return@delete call.respond(
