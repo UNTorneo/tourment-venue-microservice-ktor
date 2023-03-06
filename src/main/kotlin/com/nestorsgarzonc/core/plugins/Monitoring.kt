@@ -1,4 +1,4 @@
-package com.nestorsgarzonc.plugins
+package com.nestorsgarzonc.core.plugins
 
 import io.ktor.server.plugins.callloging.*
 import org.slf4j.event.*

@@ -1,4 +1,4 @@
-package com.nestorsgarzonc.plugins
+package com.nestorsgarzonc.core.plugins
 import com.nestorsgarzonc.features.court.model.Courts
 import com.nestorsgarzonc.features.owner.model.Owners
 import com.nestorsgarzonc.features.photos.model.Photos
@@ -9,7 +9,7 @@ import org.jetbrains.exposed.sql.*
 import org.jetbrains.exposed.sql.transactions.*
 import org.jetbrains.exposed.sql.transactions.experimental.*
 
-class DatabaseFactory {
+object DatabaseFactory {
     fun init() {
         val driverClassName = "com.impossibl.postgres.jdbc.PGDriver"
         val jdbcURL = "jdbc:pgsql://localhost:5432/tourment_venue"

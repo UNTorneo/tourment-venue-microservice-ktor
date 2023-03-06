@@ -1,4 +1,4 @@
-package com.nestorsgarzonc.plugins
+package com.nestorsgarzonc.core.plugins
 
 import io.ktor.serialization.kotlinx.json.*
 import io.ktor.server.plugins.contentnegotiation.*

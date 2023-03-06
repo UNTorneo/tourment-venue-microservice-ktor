@@ -1,4 +1,4 @@
-package com.nestorsgarzonc.plugins
+package com.nestorsgarzonc.core.plugins
 import com.nestorsgarzonc.features.owner.router.ownerRouter
 import io.ktor.server.routing.*
 import io.ktor.server.response.*
@@ -11,9 +11,7 @@ fun Application.configureRouting() {
         get("/") {
             call.respond(mapOf("message" to "I'm Working :v"))
         }
-        route("/owner") {
-            ownerRouter()
-        }
+        ownerRouter()
         //route("/customer"){
         //    get{
         //        if (customerStorage.isNotEmpty()) {
