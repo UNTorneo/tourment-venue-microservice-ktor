@@ -1,4 +1,5 @@
 package com.nestorsgarzonc.core.plugins
+import com.nestorsgarzonc.features.court.router.courtRouter
 import com.nestorsgarzonc.features.owner.router.ownerRouter
 import com.nestorsgarzonc.features.venue.router.venueRouter
 import io.ktor.server.routing.*
@@ -14,5 +15,6 @@ fun Application.configureRouting() {
         }
         ownerRouter()
         venueRouter()
+        courtRouter()
     }
 }
