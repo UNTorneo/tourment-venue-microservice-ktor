@@ -1,5 +1,6 @@
 package com.nestorsgarzonc.core.plugins
 import com.nestorsgarzonc.features.owner.router.ownerRouter
+import com.nestorsgarzonc.features.venue.router.venueRouter
 import io.ktor.server.routing.*
 import io.ktor.server.response.*
 import io.ktor.server.resources.Resources
@@ -12,33 +13,6 @@ fun Application.configureRouting() {
             call.respond(mapOf("message" to "I'm Working :v"))
         }
         ownerRouter()
-        //route("/customer"){
-        //    get{
-        //        if (customerStorage.isNotEmpty()) {
-        //            call.respond(customerStorage)
-        //        } else {
-        //            call.respond(
-        //                Customer(
-        //                "id",
-        //                    "S",
-        //                    "G",
-        //                    "s@g.com"
-        //            )
-        //            )
-        //        }
-        //    }
-        //    get("{id?}") {
-        //        val id = call.parameters["id"] ?: return@get call.respondText(
-        //            "Missing id",
-        //            status = HttpStatusCode.BadRequest
-        //        )
-        //        val customer =
-        //            customerStorage.find { it.id == id } ?: return@get call.respondText(
-        //                "No customer with id $id",
-        //                status = HttpStatusCode.NotFound
-        //            )
-        //        call.respond(customer)
-        //    }
-        //}
+        venueRouter()
     }
 }

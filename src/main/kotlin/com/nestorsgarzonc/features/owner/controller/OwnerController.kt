@@ -3,7 +3,9 @@ package com.nestorsgarzonc.features.owner.controller
 import com.nestorsgarzonc.core.failure.Failure
 import com.nestorsgarzonc.features.owner.model.*
 import com.nestorsgarzonc.core.plugins.DatabaseFactory.dbQuery
+import com.nestorsgarzonc.features.venue.model.Venues
 import org.jetbrains.exposed.sql.*
+import org.jetbrains.exposed.sql.SqlExpressionBuilder.eq
 
 class OwnerController {
     suspend fun getAllOwners(): List<Owner> = dbQuery {
@@ -24,11 +26,12 @@ class OwnerController {
             .singleOrNull()
     }
 
-    suspend fun deleteOwnerById(id: Int): Owner? = dbQuery {
-        Owners
-            .select { Owners.id eq id }
-            .map(::resultRowToOwner)
-            .singleOrNull()
+    suspend fun deleteOwnerById(id: Int): Failure? = dbQuery {
+        val res = Owners.deleteWhere { Owners.id eq id }
+        if (res > 0) {
+            return@dbQuery null
+        }
+        return@dbQuery Failure("Ha ocurrido un error eliminando el dueño")
     }
 
     suspend fun createOwner(owner: AddOwner): Failure? = dbQuery {

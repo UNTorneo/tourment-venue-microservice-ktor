@@ -37,11 +37,13 @@ fun Routing.ownerRouter() {
         delete() {
             val ownerId = call.request.queryParameters["id"]?.toIntOrNull()
             if (ownerId != null) {
-                val owner = ownerController.deleteOwnerById(ownerId) ?: return@delete call.respond(
-                    status = HttpStatusCode.NotFound,
-                    mapOf("error" to "No se encontro el dueño")
+                val failure = ownerController.deleteOwnerById(ownerId) ?: return@delete call.respond(
+                    mapOf("message" to "Eliminado exitosamente")
                 )
-                return@delete call.respond(owner)
+                return@delete call.respond(
+                    status = HttpStatusCode.BadRequest,
+                    mapOf("error" to failure.message)
+                )
             }
             call.respond(
                 status = HttpStatusCode.BadRequest,
