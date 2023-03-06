@@ -2,6 +2,7 @@ package com.nestorsgarzonc.core.plugins
 import com.nestorsgarzonc.features.court.router.courtRouter
 import com.nestorsgarzonc.features.owner.router.ownerRouter
 import com.nestorsgarzonc.features.photos.router.photosRouter
+import com.nestorsgarzonc.features.schedule.router.scheduleRouter
 import com.nestorsgarzonc.features.venue.router.venueRouter
 import io.ktor.server.routing.*
 import io.ktor.server.response.*
@@ -18,5 +19,6 @@ fun Application.configureRouting() {
         venueRouter()
         courtRouter()
         photosRouter()
+        scheduleRouter()
     }
 }
