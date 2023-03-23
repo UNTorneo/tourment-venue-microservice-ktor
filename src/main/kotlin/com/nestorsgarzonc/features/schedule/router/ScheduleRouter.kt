@@ -16,7 +16,7 @@ fun Routing.scheduleRouter() {
             if (scheduleId != null) {
                 val schedule = controller.getScheduleById(scheduleId) ?: return@get call.respond(
                     status = HttpStatusCode.NotFound,
-                    mapOf("error" to "No se encontrol calendario")
+                    mapOf("error" to "No se encontro el calendario")
                 )
                 return@get call.respond(schedule)
             }
