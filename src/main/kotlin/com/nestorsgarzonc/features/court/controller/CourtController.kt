@@ -27,23 +27,21 @@ class CourtController {
         }
     }
 
-    suspend fun getCourtsByVenueId(id: Int): Court? = dbQuery {
+    suspend fun getCourtsByVenueId(id: Int): List<Court>? = dbQuery {
         try {
             Courts
                 .select { Courts.venueId eq id }
                 .map(::resultRowToCourt)
-                .singleOrNull()
         } catch (e: ExposedSQLException) {
             return@dbQuery null
         }
     }
 
-    suspend fun getCourtsBySportId(id: String): Court? = dbQuery {
+    suspend fun getCourtsBySportId(id: String): List<Court>? = dbQuery {
         try {
             Courts
                 .select { Courts.sportId eq id }
                 .map(::resultRowToCourt)
-                .singleOrNull()
         } catch (e: ExposedSQLException) {
             return@dbQuery null
         }

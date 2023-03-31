@@ -27,12 +27,11 @@ class PhotosController {
         }
     }
 
-    suspend fun getPhotosByCourtId(id: Int): Photo? = dbQuery {
+    suspend fun getPhotosByCourtId(id: Int): List<Photo>? = dbQuery {
         try {
             Photos
                 .select { Photos.courtId eq id }
                 .map(::resultRowToPhoto)
-                .singleOrNull()
         } catch (e: ExposedSQLException) {
             return@dbQuery null
         }
