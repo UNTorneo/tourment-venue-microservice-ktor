@@ -29,7 +29,7 @@ class VenueController {
         }
     }
 
-    suspend fun getVenueByUserId(id: String): Venue? = dbQuery {
+    suspend fun getVenueByUserId(id: String): List<Venue>? = dbQuery {
         try{
             val user = Owners
                 .select { Owners.userId eq id }
@@ -38,7 +38,6 @@ class VenueController {
             Venues
                 .select { Venues.id eq user.venueId }
                 .map(::resultRowToVenue)
-                .singleOrNull()
         }catch (e: ExposedSQLException) {
             return@dbQuery null
         }
