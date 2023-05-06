@@ -1,10 +1,12 @@
 package com.nestorsgarzonc.features.owner.router
 
 import com.nestorsgarzonc.features.owner.model.*
+import io.ktor.client.*
 import io.ktor.http.*
 import io.ktor.server.routing.*
 import io.ktor.server.application.*
 import io.ktor.server.response.*
+import org.koin.java.KoinJavaComponent
 import org.koin.ktor.ext.inject
 
 //BASE ROUTE: /owner/

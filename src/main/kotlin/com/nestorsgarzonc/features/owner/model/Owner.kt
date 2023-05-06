@@ -6,6 +6,18 @@ import org.jetbrains.exposed.dao.id.IntIdTable
 import org.jetbrains.exposed.sql.ResultRow
 
 @Serializable
+data class User(
+    val username: String,
+    val birthday: String,
+    val email: String,
+    val id: Int,
+    val isActive: Boolean,
+)
+
+@Serializable
+data class OwnerPopulated(val id: Int, val venueId: Int, val user: User)
+
+@Serializable
 data class Owner(val id: Int, val venueId: Int, val userId: String)
 
 @Serializable
