@@ -68,6 +68,7 @@ class CourtController {
                 if (court.venueId != null) it[venueId] = court.venueId
                 if (court.sportId != null) it[sportId] = court.sportId
                 if (court.isActive != null) it[isActive] = court.isActive
+                if (court.name != null) it[name] = court.name
             }
             if (insertStatement > 0) {
                 return@dbQuery null
