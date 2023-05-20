@@ -53,6 +53,7 @@ class CourtController {
                 it[venueId] = court.venueId
                 it[sportId] = court.sportId
                 it[isActive] = court.isActive
+                it[name] = court.name
             }
             insertStatement.resultedValues?.singleOrNull()?.let(::resultRowToCourt)
                 ?: return@dbQuery Failure("No se pudo crear la cancha")
